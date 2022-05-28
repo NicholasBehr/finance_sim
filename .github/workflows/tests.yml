@@ -5,9 +5,6 @@ on: [push]
 jobs:
   code-analysis:
     runs-on: ubuntu-latest
-    strategy:
-      os: ubuntu-latest
-      python-version: "3.7"
 
     steps:
       - uses: actions/checkout@v3
