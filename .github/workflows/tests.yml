@@ -3,7 +3,7 @@ name: finance_sim_test
 on: [push]
 
 jobs:
-  code-analysis:
+  linter&typecheck:
     runs-on: ubuntu-latest
 
     steps:
@@ -26,7 +26,7 @@ jobs:
         run: |
           mypy src
 
-  os-and-version-analysis:
+  pytest:
 
     runs-on: ${{ matrix.os }}
     strategy:
