@@ -1,18 +1,16 @@
-
-
 class Credit:
-    def __init__(self, credit_amount: float, effective_interest: float, monthly_rate: float):
+    def __init__(self, initial_amount: float, effective_interest: float, monthly_rate: float):
         """Generic constructor of credit class
 
         Args:
             credit_amount (float): initial amout of money loaned
             effective_interest (float): yearly EFFECTIVE INTEREST in PERCENT! 2% -> 2\n
-            The effective interest rate is higher than the nominal interest rate because it takes into account that your 
-            installments are not annual, but monthly. Interest is thus accrued over the course of the year. 
+            The effective interest rate is higher than the nominal interest rate because it takes into account that your
+            installments are not annual, but monthly. Interest is thus accrued over the course of the year.
             The effective interest rate is the interest that you actually pay.
             monthly_rate (float): amount of money returned to creditor at the end of every month (in arrears)
         """
-        self.credit_amount = credit_amount
+        self.initial_amount = initial_amount
         self.q_yearly = 1 + (effective_interest/100)
         self.q_monthly = self.q_yearly ** (1/12)
         self.monthly_rate = monthly_rate
@@ -33,7 +31,10 @@ class Credit:
         Returns:
             float: remaining balance due
         """
-        interest = self.credit_amount * (self.q_monthly ** after_n_months)
+        #todo
+        if self.q_monthly == 1:
+            return 0
+        interest = self.initial_amount * (self.q_monthly ** after_n_months)
         paid = self.monthly_rate * (1 - (self.q_monthly ** after_n_months)) / (1 - self.q_monthly)
         return interest - paid
 
